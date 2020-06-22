@@ -1,7 +1,9 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_youtube_favorites/blocs/favorite_bloc.dart';
 import 'package:flutter_youtube_favorites/blocs/video_bloc.dart';
 import 'package:flutter_youtube_favorites/delegates/data_search.dart';
+import 'package:flutter_youtube_favorites/models/video.dart';
 import 'package:flutter_youtube_favorites/tiles/video_tile.dart';
 
 class VideoScreen extends StatelessWidget {
@@ -20,7 +22,15 @@ class VideoScreen extends StatelessWidget {
         actions: <Widget>[
           Align(
             alignment: Alignment.center,
-            child: Text("0"),
+            child: StreamBuilder<Map<String, Video>>(
+                stream: BlocProvider.of<FavoriteBloc>(context).outFavorites,
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return Container();
+                  } else {
+                    return Text("${snapshot.data.length}");
+                  }
+                }),
           ),
           IconButton(
             icon: Icon(Icons.star),
