@@ -26,7 +26,6 @@ class FavoriteTile extends StatelessWidget {
             child: Text(
               this.video.title,
               maxLines: 2,
-              style: TextStyle(color: Colors.white),
             ),
           )
         ],

@@ -42,15 +42,14 @@ class VideoTile extends StatelessWidget {
                         padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
                         child: Text(
                           video.title,
-                          style: TextStyle(color: Colors.white, fontSize: 16),
+                          style: TextStyle(fontSize: 16),
                           maxLines: 2,
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8),
-                        child: Text(video.channel,
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 14)),
+                        child:
+                            Text(video.channel, style: TextStyle(fontSize: 14)),
                       )
                     ],
                   ),
@@ -65,7 +64,6 @@ class VideoTile extends StatelessWidget {
                         icon: Icon(snapshot.data.containsKey(video.id)
                             ? Icons.star
                             : Icons.star_border),
-                        color: Colors.white,
                         iconSize: 30,
                         onPressed: () {
                           favoritesBloc.toggleFavorite(video);

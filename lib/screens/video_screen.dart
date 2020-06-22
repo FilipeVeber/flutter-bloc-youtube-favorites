@@ -13,13 +13,11 @@ class VideoScreen extends StatelessWidget {
     final _videoProvider = BlocProvider.of<VideoBloc>(context);
 
     return Scaffold(
-      backgroundColor: Colors.black,
       appBar: AppBar(
         title: Container(height: 25, child: Text("Aqui vai a logo")
 //            child: Image.asset("")
             ),
         elevation: 0,
-        backgroundColor: Colors.black87,
         actions: <Widget>[
           Align(
             alignment: Alignment.center,
