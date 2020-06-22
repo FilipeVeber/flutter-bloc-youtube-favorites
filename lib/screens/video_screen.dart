@@ -64,9 +64,23 @@ class VideoScreen extends StatelessWidget {
             case ConnectionState.done:
               if (snapshot.hasData) {
                 return ListView.builder(
-                  itemCount: snapshot.data.length,
+                  itemCount: snapshot.data.length + 1,
                   itemBuilder: (context, index) {
-                    return VideoTile(snapshot.data[index]);
+                    if (index < snapshot.data.length) {
+                      return VideoTile(snapshot.data[index]);
+                    } else if (index > 1) {
+                      _videoProvider.inSearch.add(null);
+                      return Container(
+                        width: 40,
+                        height: 40,
+                        alignment: Alignment.center,
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
+                        ),
+                      );
+                    } else {
+                      return Container();
+                    }
                   },
                 );
               }
