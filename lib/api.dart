@@ -26,18 +26,26 @@ class API {
   }
 
   List<Video> decode(http.Response response) {
-    if (response.statusCode == 200) {
-      var decoded = json.decode(response.body);
+    try {
+      switch (response.statusCode) {
+        case 200:
+          var decoded = json.decode(response.body);
 
-      _nextToken = decoded["nextPageToken"];
+          _nextToken = decoded["nextPageToken"];
 
-      var videos = decoded["items"].map<Video>((v) {
-        return Video.fromJson(v);
-      }).toList();
+          var videos = decoded["items"].map<Video>((v) {
+            return Video.fromJson(v);
+          }).toList();
 
-      return videos;
-    } else {
-      throw Exception("Failed to load videos");
+          return videos;
+          break;
+        case 403:
+          throw Exception(
+              "Request failed. Response status code: ${response.statusCode}. Request: ${response.request}.");
+          break;
+      }
+    } catch (e) {
+      throw Exception("Failed to load videos. Error: ${e.toString()}");
     }
   }
 }

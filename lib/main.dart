@@ -1,5 +1,6 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_youtube_favorites/blocs/favorite_bloc.dart';
 
 import 'blocs/video_bloc.dart';
 import 'screens/video_screen.dart';
@@ -13,13 +14,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       bloc: VideoBloc(),
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
+      child: BlocProvider(
+        bloc: FavoriteBloc(),
+        child: MaterialApp(
+          title: 'Flutter Demo',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          home: VideoScreen(),
         ),
-        home: VideoScreen(),
       ),
     );
   }
