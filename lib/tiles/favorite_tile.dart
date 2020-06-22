@@ -1,6 +1,8 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_youtube/flutter_youtube.dart';
 import 'package:flutter_youtube_favorites/blocs/favorite_bloc.dart';
+import 'package:flutter_youtube_favorites/constants.dart';
 import 'package:flutter_youtube_favorites/models/video.dart';
 
 class FavoriteTile extends StatelessWidget {
@@ -29,7 +31,10 @@ class FavoriteTile extends StatelessWidget {
           )
         ],
       ),
-      onTap: () {},
+      onTap: () {
+        FlutterYoutube.playYoutubeVideoById(
+            apiKey: API_KEY, videoId: this.video.id);
+      },
       onLongPress: () {
         _favoritesProvider.toggleFavorite(this.video);
       },
