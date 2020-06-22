@@ -4,6 +4,7 @@ import 'package:flutter_youtube_favorites/blocs/favorite_bloc.dart';
 import 'package:flutter_youtube_favorites/blocs/video_bloc.dart';
 import 'package:flutter_youtube_favorites/delegates/data_search.dart';
 import 'package:flutter_youtube_favorites/models/video.dart';
+import 'package:flutter_youtube_favorites/screens/favorite_screen.dart';
 import 'package:flutter_youtube_favorites/tiles/video_tile.dart';
 
 class VideoScreen extends StatelessWidget {
@@ -34,7 +35,10 @@ class VideoScreen extends StatelessWidget {
           ),
           IconButton(
             icon: Icon(Icons.star),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => FavoriteScreen()));
+            },
           ),
           IconButton(
             icon: Icon(Icons.search),
@@ -60,7 +64,7 @@ class VideoScreen extends StatelessWidget {
             case ConnectionState.done:
               if (snapshot.hasData) {
                 return ListView.builder(
-                  itemCount: 10,
+                  itemCount: snapshot.data.length,
                   itemBuilder: (context, index) {
                     return VideoTile(snapshot.data[index]);
                   },
