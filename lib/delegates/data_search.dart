@@ -5,6 +5,11 @@ import 'package:http/http.dart' as http;
 
 class DataSearch extends SearchDelegate<String> {
   @override
+  ThemeData appBarTheme(BuildContext context) {
+    return Theme.of(context);
+  }
+
+  @override
   List<Widget> buildActions(BuildContext context) {
     return [
       IconButton(
