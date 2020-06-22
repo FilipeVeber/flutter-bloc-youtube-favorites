@@ -14,9 +14,8 @@ class VideoScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Container(height: 25, child: Text("Aqui vai a logo")
-//            child: Image.asset("")
-            ),
+        title: Container(
+            height: 35, child: Image.asset("images/youtube_logo.png")),
         elevation: 0,
         actions: <Widget>[
           Align(
